@@ -46,10 +46,50 @@ Show these notes:
 
 ---
 
+## FIRST: DETECT WHERE WE ARE
+
+Before starting any phase, **analyze the context** to determine the right starting point:
+
+1. **Check for existing project**: Is there already a project structure, package.json, or source files?
+2. **Check for CLAUDE.md**: Does the project have a CLAUDE.md with context?
+3. **Check for summary**: Did the user provide a summary of previous work?
+4. **Check for plans**: Are there existing plans in a `plans/` folder?
+
+Then determine the starting phase:
+
+| What You Find | Start At |
+|---------------|----------|
+| No project exists | Phase 1: Setup |
+| Project exists, no plan for current work | Phase 2: Plan |
+| Project exists, plan exists, not implemented | Phase 3: Work |
+| Implementation done, needs review | Phase 4: Review |
+| Everything complete, needs documentation | Phase 5: Compound |
+
+**Show this to the user:**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ 📚 CONTEXT DETECTION                                            │
+├─────────────────────────────────────────────────────────────────┤
+│ WHAT I FOUND:                                                   │
+│ • [Project status]                                              │
+│ • [Existing files/structure]                                    │
+│ • [Summary context if provided]                                 │
+│                                                                 │
+│ STARTING AT: Phase [X] - [Name]                                 │
+│                                                                 │
+│ WHY: [Brief explanation]                                        │
+│                                                                 │
+│ Does this look right? Say "yes" to continue or correct me.      │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## THE FIVE PHASES
 
 ### Phase 1: PROJECT SETUP
-**Trigger**: Starting a new project from scratch
+**Trigger**: Starting a new project from scratch (no existing project found)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
